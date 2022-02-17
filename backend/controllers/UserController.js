@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const createUserToken = require('../helpers/create-user-token')
 const getToken = require('../helpers/get-token')
+const getUserByToken = require('../helpers/get-user-by-token')
 const mongoose = require('mongoose')
 
 module.exports = class UserController {
@@ -136,9 +137,74 @@ module.exports = class UserController {
   }
 
   static async editUser(req, res) {
-    res.status(200).json({
-      message: 'Deu certo!',
-    })
+    const id = mongoose.Types.ObjectId(req.params.id)
 
+    // check if user exists
+    const token = getToken(req)
+    const user = await getUserByToken(token)
+
+    const {name, email, phone, password, confirmPassword} = req.body
+
+    let image = ''
+
+    // validations
+    if(!name) {
+      res.status(422).json({ message: 'O nome é obrigatório' })
+      return
+    }
+
+    user.name = name
+
+    if(!email) {
+      res.status(422).json({ message: 'O email é obrigatório' })
+      return
+    }
+
+    // check if email has already taken
+    const userExists = await User.findOne({ email: email})
+
+    if(user.email != email && userExists) {
+      res.status(422).json({
+        message: 'Email já cadastrado',
+      })
+      return
+    }
+
+    user.email = email
+
+    if(!phone) {
+      res.status(422).json({ message: 'O telefone é obrigatório' })
+      return
+    }
+
+
+    user.phone = phone
+
+    if(password !== confirmPassword) {
+      res.status(422).json({ message: 'As senhas devem ser iguais' })
+      return
+    } else if(password === confirmPassword &&password != null) {
+
+      //creating a password
+      const salt = await bcrypt.genSalt(12)
+      const passwordHash = await bcrypt.hash(password, salt)
+
+      user.password = passwordHash
+    }
+
+    try {
+      // returns user uptaded data
+        await User.findOneAndUpdate(
+        {_id: user._id},
+        {$set: user},
+        {new: true}
+      )
+
+      res.status(200).json({
+        message: "Usuário atualizado com sucesso!"
+      })
+    } catch(err) {
+      res.status(500).json({message: 'Deu erro'})
+    }
   }
 }
