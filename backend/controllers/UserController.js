@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const createUserToken = require('../helpers/create-user-token')
 const getToken = require('../helpers/get-token')
+const mongoose = require('mongoose')
 
 module.exports = class UserController {
 
@@ -116,5 +117,21 @@ module.exports = class UserController {
       currentUser = null
     }
     res.status(200).send(currentUser)
+  }
+
+  static async getUserById(req, res) {
+
+    const id = mongoose.Types.ObjectId(req.params.id)
+
+    const user = await User.findById(id).select('-password')
+
+    if(!user) {
+      res.status(422).json({
+        message: 'Usuário não encontrado',
+      })
+      return
+    }
+
+    res.status(200).json({ user })
   }
 }
