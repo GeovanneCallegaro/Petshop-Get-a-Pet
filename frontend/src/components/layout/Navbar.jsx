@@ -15,7 +15,7 @@ export function Navbar() {
           <Link to='/'>Adotar</Link>
         </li>
         <li>
-          <Link to='/login'>Registrar-se</Link>
+          <Link to='/login'>Login</Link>
         </li>
         <li>
           <Link to='/register'>Cadastre-se</Link>
