@@ -10,12 +10,16 @@ import { Home } from './components/pages/Home.jsx'
 import { Login } from './components/pages/Auth/Login.jsx'
 import { Register } from './components/pages/Auth/Register.jsx'
 
+/* Context */
+import {UserProvider} from './context/UserContext.jsx'
+
 
 function App() {
   return (
     <Router>
-      <Navbar></Navbar>
-      <Container>
+      <UserProvider>
+        <Navbar />
+        <Container>
         <Switch>
           <Route path="/login">
             <Login></Login>
@@ -27,8 +31,9 @@ function App() {
             <Home></Home>
           </Route>
         </Switch>
-      </Container>
-      <Footer></Footer>
+        </Container>
+      </UserProvider>
+      <Footer />
     </Router>
   )
 }
