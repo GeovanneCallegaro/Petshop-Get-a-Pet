@@ -4,6 +4,7 @@ import styles from './Profile.module.css'
 import { useState, useEffect } from 'react';
 import api from '../../../utils/api'
 import { useFlashMessage } from './../../../hooks/useFlashMessage';
+import { RoundedImage } from '../../layout/RoundedImage.jsx';
 
 
 
@@ -65,7 +66,7 @@ export function Profile() {
       <div className={styles.profile_container}>
         <h1>{user.name}</h1>
         {(user.image || preview) && (
-          <img src={preview ? URL.createObjectURL(preview) : `http://localhost:5000/images/users/${user.image}`} alt={user.name} />
+          <RoundedImage src={preview ? URL.createObjectURL(preview) : `http://localhost:5000/images/users/${user.image}`} alt={user.name} />
         )}
       </div>
       <form className={formStyles.form_container} onSubmit={handleSubmit}>
