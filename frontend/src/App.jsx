@@ -10,6 +10,7 @@ import { Message } from './components/layout/Message.jsx'
 import { Home } from './components/pages/Home.jsx'
 import { Login } from './components/pages/Auth/Login.jsx'
 import { Register } from './components/pages/Auth/Register.jsx'
+import { Profile } from './components/pages/User/Profile.jsx'
 
 /* Context */
 import {UserProvider} from './context/UserContext.jsx'
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Register></Register>
+          </Route>
+          <Route path="/user/profile">
+            <Profile></Profile>
           </Route>
           <Route path="/">
             <Home></Home>
