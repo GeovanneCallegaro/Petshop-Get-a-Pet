@@ -2,11 +2,25 @@ import { Input } from './../../form/Input';
 import formStyles from './../../form/Form.module.css'
 import styles from './Profile.module.css'
 import { useState, useEffect } from 'react';
+import api from '../../../utils/api'
 
 
 
 export function Profile() {
   const [user, setUser] = useState({})
+  const [token] = useState(localStorage.getItem('token') || '')
+
+  useEffect(() => {
+
+    api.get('users/checkuser', {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
+    }).then((response) => {
+      setUser(response.data)
+    })
+
+  }, [token])
 
   function handleChange() {
 
@@ -19,7 +33,7 @@ export function Profile() {
   return (
     <section>
       <div className={styles.profile_container}>
-        <h1>Perfil</h1>
+        <h1>{user.name}</h1>
         <p>Preview Imagem</p>
       </div>
       <form className={formStyles.form_container}>
