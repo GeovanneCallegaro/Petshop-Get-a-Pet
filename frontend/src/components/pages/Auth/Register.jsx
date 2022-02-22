@@ -55,7 +55,7 @@ export function Register() {
         <Input
           text="Confirme sua senha"
           type="password"
-          name="confirmpassword"
+          name="confirmPassword"
           placeholder="Digite a senha novamente"
           handleOnChange={handleChange}
         />
