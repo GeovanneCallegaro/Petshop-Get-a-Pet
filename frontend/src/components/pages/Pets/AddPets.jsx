@@ -8,6 +8,9 @@ import { useHistory } from 'react-router-dom'
 /* hooks */
 import { useFlashMessage } from '../../../hooks/useFlashMessage'
 
+/* components */
+import { PetForm } from '../../form/PetForm'
+
 export function AddPet() {
   return (
     <section className={styles.addpet_header}>
@@ -15,7 +18,7 @@ export function AddPet() {
         <h1>Cadastre um Pet</h1>
         <p>Depois ele ficará disponível para adoção</p>
       </div>
-        <p>Formulário</p>
+        <PetForm btnText='Cadastrar Pet'/>
     </section>
   )
 }
