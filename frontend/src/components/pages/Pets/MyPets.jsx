@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import styles from './Dashboard.module.css'
 
 import { Link } from 'react-router-dom';
 
@@ -32,7 +33,29 @@ export function MyPets() {
       </div>
       <div>
         {pets.length > 0 ?
-          <p>Meus pets cadastrados</p> :
+          pets.map((pet) => (
+              <div key={pet._id}>
+                <RoundedImage
+                  src={`http://localhost:5000/images/pets/${pet.images[0]}`}
+                  alt={pet.name}
+                  width='75px'
+                />
+                  <span className="bold">{pet.name}</span>
+                  <div className={styles.action}>
+                    {pet.available ? (
+                      <>
+                        {pet.adopter && (
+                          <button>Concluir adoção</button>
+                        )}
+                        <Link to={`/pet/edit${pet._id}`}>Editar</Link>
+                        <button>Excluir</button>
+                      </>
+                    ) : (
+                      <p>Pet já adotado</p>
+                    )}
+                  </div>
+              </div>
+          )) :
           <p>Não há Pets cadastrados!</p>
         }
       </div>
