@@ -11,6 +11,7 @@ import { Home } from './components/pages/Home.jsx'
 import { Login } from './components/pages/Auth/Login.jsx'
 import { Register } from './components/pages/Auth/Register.jsx'
 import { Profile } from './components/pages/User/Profile.jsx'
+import { MyPets } from './components/pages/Pets/MyPets.jsx'
 
 /* Context */
 import {UserProvider} from './context/UserContext.jsx'
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/user/profile">
             <Profile></Profile>
+          </Route>
+          <Route path="/pet/mypets">
+            <MyPets></MyPets>
           </Route>
           <Route path="/">
             <Home></Home>
