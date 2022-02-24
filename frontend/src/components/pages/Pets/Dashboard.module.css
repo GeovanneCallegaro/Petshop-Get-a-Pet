@@ -92,3 +92,11 @@
   background-color: #25b456;
   color: #fff;
 }
+
+.contacts {
+  margin-left: 2em;
+}
+
+.contatcs p {
+  margin-bottom: 0.5em;
+}

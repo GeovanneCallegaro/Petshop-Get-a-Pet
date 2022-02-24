@@ -28,6 +28,9 @@ export function Navbar() {
               <Link to='/pet/mypets'>Meus Pets</Link>
             </li>
             <li>
+              <Link to='/pet/myadoptions'>Minhas adoções</Link>
+            </li>
+            <li>
               <Link to='/user/profile'>Meu perfil</Link>
             </li>
             <li onClick={logout}>
