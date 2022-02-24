@@ -11,7 +11,7 @@ import { useFlashMessage } from './../../../hooks/useFlashMessage';
 
 export function MyPets() {
   const [pets, setPets] = useState([])
-  const [token] = useState(localStorage.getItem('token' || ''))
+  const [token] = useState(localStorage.getItem('token') || '')
   const {setFlashMessage} = useFlashMessage()
 
 

@@ -10,7 +10,7 @@ export function PetDetails() {
   const [pet, setPet] = useState({})
   const {id} = useParams()
   const {setFlashMessage} = useFlashMessage()
-  const [token] = useState(localStorage.getItem('token' || ''))
+  const [token] = useState(localStorage.getItem('token') || '')
 
   useEffect(() => {
     api.get(`/pets/${id}`).then((response) => {

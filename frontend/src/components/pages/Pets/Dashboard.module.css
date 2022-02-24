@@ -83,14 +83,14 @@
 }
 
 .actions .conclude_btn {
-  color: #25b456;
+  color: #fff;
   border-color: #25b456;
-
+  background-color: #25b456;
 }
 
 .actions .conclude_btn:hover {
-  background-color: #25b456;
-  color: #fff;
+  background-color: #fff;
+  color: #25b456;
 }
 
 .contacts {
